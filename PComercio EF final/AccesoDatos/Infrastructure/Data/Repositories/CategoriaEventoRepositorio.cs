@@ -5,7 +5,7 @@ using AccesoDatos.Infrastructure.Data.DataModels;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
-    public class CategoriaEventoEventoRepositorio : EFRepositorio<categoria_evento>
+    public class CategoriaEventoRepositorio : EFRepositorio<categoria_evento>
     {
         public categoria_evento ObtenerCategoriaEvento(int id)
         {
