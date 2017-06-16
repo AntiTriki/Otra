@@ -2,67 +2,55 @@
 using System.Linq;
 using AccesoDatos.Domain.Entities;
 using AccesoDatos.Infrastructure.Data.DataModels;
-
+using System;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
     public class TransaccionPreviaRepositorio : EFRepositorio<transaccion_previa>
     {
-        public int GuardarUsuario(string usuario, string nombre, string correo, string clave, DateTime fechaNac, int sexo, int idPais)
+        public int GuardarTransaccionPrevia(int id_usuario, int cantidad, DateTime fecha, int id_tipoentrada, int valido)
         {
-            Usuario usr = new Usuario()
+            transaccion_previa usr = new transaccion_previa()
             {
-                Usuario1 = usuario,
-                Nombre = nombre,
-                Correo = correo,
-                Clave = clave == "" ? null : clave,
-                FechaNacimiento = fechaNac,
-                SEXO = (short?)sexo,
-                IdPais = idPais
+                id_usuario = id_usuario,
+                cantidad = cantidad,
+                fecha = fecha,
+                id_tipoentrada = id_tipoentrada,
+               
+                valido = valido
             };
             Add(usr);
             SaveChanges();
-            return usr.IdUsuario;
+            return usr.id;
         }
-        public void ModificarUsuario(int idUsuario, string usuario, string nombre, string correo, DateTime fechaNac, int sexo, int idPais)
+        public void ModificarTransaccionPrevia(int id, int id_usuario, DateTime fecha, int cantidad, int id_tipoentrada, int valido)
         {
-            Usuario usr = this.Get(idUsuario);
-            usr.Usuario1 = usuario;
-            usr.Nombre = nombre;
-            usr.Correo = correo;
-            usr.FechaNacimiento = fechaNac;
-            usr.SEXO = (short?)sexo;
-            usr.IdPais = idPais;
+            transaccion_previa usr = this.Get(id);
+            usr.id_usuario = id_usuario;
+            usr.fecha = fecha;
+            usr.cantidad = cantidad;
+            usr.id_tipoentrada = id_tipoentrada;
+           
+            usr.valido = valido;
             Update(usr);
             SaveChanges();
         }
 
-        public void EliminarUsuario(int idUsuario)
+        public void EliminarTransaccionPrevia(int id)
         {
-            Usuario usr = this.Get(idUsuario);
+            transaccion_previa usr = this.Get(id);
             Remove(usr);
             SaveChanges();
         }
 
-        public Usuario ObtenerUsuario(int idUsuario)
+        public transaccion_previa ObtenerTransaccionPrevia(int idTransaccionPrevia)
         {
-            return Get(idUsuario);
+            return Get(idTransaccionPrevia);
         }
 
-        public List<UsuarioDTO> ObtenerUsuarios()
+        public List<transaccion_previa> ObtenerTransaccionPrevias()
         {
-            return GetAll().Select(x => new UsuarioDTO()
-            {
-                IdUsuario = x.IdUsuario,
-                Usuario = x.Usuario1,
-                Nombre = x.Nombre,
-                Correo = x.Correo,
-                FechaNac = x.FechaNacimiento.Value,
-                Clave = x.Clave,
-                IdSexo = x.SEXO.Value,
-                Sexo = x.SEXO.Value == 1 ? "Masculino" : "Femenino",
-                IdPais = x.IdPais
-            }).ToList();
+            return GetAll();
         }
     }
 }

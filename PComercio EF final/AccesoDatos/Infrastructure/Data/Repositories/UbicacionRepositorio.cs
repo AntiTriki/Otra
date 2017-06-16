@@ -2,51 +2,47 @@
 using System.Linq;
 using AccesoDatos.Domain.Entities;
 using AccesoDatos.Infrastructure.Data.DataModels;
+using System;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
     public class UbicacionRepositorio : EFRepositorio<ubicacion_evento>
     {
-        public int GuardarPais(string nombre, string descripcion)
+        public int GuardarUbicacion(string nombre)
         {
-            Pai pais = new Pai()
+            ubicacion_evento pais = new ubicacion_evento()
             {
-                Nombre = nombre,
-                Descripcion = descripcion
+                nombre = nombre,
+                
             };
             Add(pais);
             SaveChanges();
-            return pais.IdPais;
+            return pais.id;
         }
-        public void ModificarPais(int idPais, string nombre, string descripcion)
+        public void ModificarUbicacion(int id, string nombre)
         {
-            Pai pais = this.Get(idPais);
-            pais.Nombre = nombre;
-            pais.Descripcion = descripcion;
+            ubicacion_evento pais = this.Get(id);
+            pais.nombre = nombre;
+            
             Update(pais);
             SaveChanges();
         }
 
-        public void EliminarPais(int idPais)
+        public void EliminarUbicacion(int id)
         {
-            Pai pais = this.Get(idPais);
+            ubicacion_evento pais = this.Get(id);
             Remove(pais);
             SaveChanges();
         }
 
-        public Pai ObtenerPais(int idPais)
+        public ubicacion_evento ObtenerUbicacion(int id)
         {
-            return Get(idPais);
+            return Get(id);
         }
 
-        public List<PaisDTO> ObtenerPaises()
+        public List<ubicacion_evento> ObtenerUbicaciones()
         {
-            return GetAll().Select(x => new PaisDTO()
-            {
-                IdPais = x.IdPais,
-                Nombre = x.Nombre,
-                Descripcion = x.Descripcion
-            }).ToList();
+            return GetAll();
         }
     }
 }

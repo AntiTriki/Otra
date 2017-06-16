@@ -6,63 +6,76 @@ using AccesoDatos.Infrastructure.Data.DataModels;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
-    public class UsuarioeRepositorio : EFRepositorio<Usuarioe>
+    public class UsuarioeRepositorio : EFRepositorio<usuarioe>
     {
-        public int GuardarUsuario(string usuario, string nombre, string correo, string clave, DateTime fechaNac, int sexo, int idPais)
-        {
-            Usuario usr = new Usuario()
+        public int GuardarUsuario(string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido , int telefono, int nit,string estado_civil, string ocupacion)        {
+            usuarioe usr = new usuarioe()
             {
-                Usuario1 = usuario,
-                Nombre = nombre,
-                Correo = correo,
-                Clave = clave == "" ? null : clave,
-                FechaNacimiento = fechaNac,
-                SEXO = (short?)sexo,
-                IdPais = idPais
+
+                nombre = nombre,
+                correo = correo,
+                apellidop = apellidop,
+                apellidom = apellidom,
+                contra = contra,
+                valido = valido,
+                telefono = telefono,
+                direccion = direccion,
+                imagen = imagen,
+                ocupacion = ocupacion,
+                estado_civil = estado_civil,
+                fecha_nac = fecha_nac,
+                fecha_registro = fecha_registro,
+                sexo = sexo,
+                nit = nit,
+                nombre_nit = nombre_nit,
+                correo_nit = correo_nit
+                
             };
             Add(usr);
             SaveChanges();
-            return usr.IdUsuario;
+            return usr.id;
         }
-        public void ModificarUsuario(int idUsuario, string usuario, string nombre, string correo, DateTime fechaNac, int sexo, int idPais)
+        public void ModificarUsuario(int id, string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido, int telefono, int nit, string estado_civil, string ocupacion)
         {
-            Usuario usr = this.Get(idUsuario);
-            usr.Usuario1 = usuario;
-            usr.Nombre = nombre;
-            usr.Correo = correo;
-            usr.FechaNacimiento = fechaNac;
-            usr.SEXO = (short?)sexo;
-            usr.IdPais = idPais;
+            usuarioe usr = this.Get(id);
+            
+            usr.nombre = nombre;
+            usr.apellidop = apellidop;
+            usr.apellidom = apellidom;
+            usr.correo = correo;
+            usr.contra = contra;
+            usr.valido = valido;
+            usr.telefono = telefono;
+
+            usr.direccion = direccion;
+            usr.imagen = imagen;
+            usr.sexo = sexo;
+            usr.fecha_nac = fecha_nac;
+            usr.ocupacion = ocupacion;
+            usr.estado_civil = estado_civil;
+            usr.fecha_registro = fecha_registro;
+            usr.nit = nit;
+            usr.nombre_nit = nombre_nit;
+            usr.correo_nit = correo_nit;
             Update(usr);
             SaveChanges();
         }
 
-        public void EliminarUsuario(int idUsuario)
+        public void EliminarUsuario(int id)
         {
-            Usuario usr = this.Get(idUsuario);
+            usuarioe usr = this.Get(id);
             Remove(usr);
             SaveChanges();
         }
 
-        public Usuario ObtenerUsuario(int idUsuario)
+        public usuarioe ObtenerUsuario(int id)
         {
-            return Get(idUsuario);
+            return Get(id);
         }
 
-        public List<UsuarioDTO> ObtenerUsuarios()
+        public List<usuarioe> ObtenerUsuarios()
         {
-            return GetAll().Select(x => new UsuarioDTO()
-            {
-                IdUsuario = x.IdUsuario,
-                Usuario = x.Usuario1,
-                Nombre = x.Nombre,
-                Correo = x.Correo,
-                FechaNac = x.FechaNacimiento.Value,
-                Clave = x.Clave,
-                IdSexo = x.SEXO.Value,
-                Sexo = x.SEXO.Value == 1 ? "Masculino" : "Femenino",
-                IdPais = x.IdPais
-            }).ToList();
+            return GetAll();
         }
     }
 }
