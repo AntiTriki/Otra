@@ -1,68 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AccesoDatos.Domain.Entities;
+using AccesoDatos.Infrastructure.Data.DataModels;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
-    public class PagoUsuarioRepositorio
+    public class PagoUsuarioRepositorio : EFRepositorio<pago_usuario>
     {
-        public int GuardarUsuario(string usuario, string nombre, string correo, string clave, DateTime fechaNac, int sexo, int idPais)
+        public int GuardarPagoUsuario(int id_trans, DateTime fecha_pago, int monto, string factura, int valido)
         {
-            Usuario usr = new Usuario()
+            pago_usuario usr = new pago_usuario()
             {
-                Usuario1 = usuario,
-                Nombre = nombre,
-                Correo = correo,
-                Clave = clave == "" ? null : clave,
-                FechaNacimiento = fechaNac,
-                SEXO = (short?)sexo,
-                IdPais = idPais
+                id_trans = id_trans,
+                monto = monto,
+                factura = factura,
+                fecha_pago = fecha_pago,
+                valido = valido
             };
             Add(usr);
             SaveChanges();
-            return usr.IdUsuario;
+            return usr.id;
         }
-        public void ModificarUsuario(int idUsuario, string usuario, string nombre, string correo, DateTime fechaNac, int sexo, int idPais)
+        public void ModificarPagoUsuario(int id, int id_trans, DateTime fecha_pago, int monto, string factura, int valido)
         {
-            Usuario usr = this.Get(idUsuario);
-            usr.Usuario1 = usuario;
-            usr.Nombre = nombre;
-            usr.Correo = correo;
-            usr.FechaNacimiento = fechaNac;
-            usr.SEXO = (short?)sexo;
-            usr.IdPais = idPais;
+            pago_usuario usr = this.Get(id);
+            usr.id_trans = id_trans;
+            usr.monto = monto;
+            usr.factura = factura;
+            usr.valido = valido;
+           
             Update(usr);
             SaveChanges();
         }
 
-        public void EliminarUsuario(int idUsuario)
+        public void EliminarPagoUsuario(int id)
         {
-            Usuario usr = this.Get(idUsuario);
+            pago_usuario usr = this.Get(id);
             Remove(usr);
             SaveChanges();
         }
 
-        public Usuario ObtenerUsuario(int idUsuario)
+        public pago_usuario ObtenerPagoUsuario(int id)
         {
-            return Get(idUsuario);
+            return Get(id);
         }
 
-        public List<UsuarioDTO> ObtenerUsuarios()
+        public List<pago_usuario> ObtenerPagoUsuarios()
         {
-            return GetAll().Select(x => new UsuarioDTO()
-            {
-                IdUsuario = x.IdUsuario,
-                Usuario = x.Usuario1,
-                Nombre = x.Nombre,
-                Correo = x.Correo,
-                FechaNac = x.FechaNacimiento.Value,
-                Clave = x.Clave,
-                IdSexo = x.SEXO.Value,
-                Sexo = x.SEXO.Value == 1 ? "Masculino" : "Femenino",
-                IdPais = x.IdPais
-            }).ToList();
+            return GetAll();
         }
     }
 }

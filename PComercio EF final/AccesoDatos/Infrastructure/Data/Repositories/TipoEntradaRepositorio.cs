@@ -1,68 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AccesoDatos.Domain.Entities;
+using AccesoDatos.Infrastructure.Data.DataModels;
 
 namespace AccesoDatos.Infrastructure.Data.Repositories
 {
-   public class TipoEntradaRepositorio
+   public class TipoEntradaRepositorio : EFRepositorio<tipoentrada>
     {
-        public int GuardarUsuario(string usuario, string nombre, string correo, string clave, DateTime fechaNac, int sexo, int idPais)
+        public int GuardarTipoEntrada(string nombre, string descripcion, string imagen, int valido, int id_evento, int capacidad)
         {
-            Usuario usr = new Usuario()
+            tipoentrada usr = new tipoentrada()
             {
-                Usuario1 = usuario,
-                Nombre = nombre,
-                Correo = correo,
-                Clave = clave == "" ? null : clave,
-                FechaNacimiento = fechaNac,
-                SEXO = (short?)sexo,
-                IdPais = idPais
+                
+                nombre = nombre,
+                descripcion = descripcion,
+                imagen = imagen,
+                id_evento = id_evento,
+                valido = valido,
+                capacidad = capacidad
             };
             Add(usr);
             SaveChanges();
-            return usr.IdUsuario;
+            return usr.id;
         }
-        public void ModificarUsuario(int idUsuario, string usuario, string nombre, string correo, DateTime fechaNac, int sexo, int idPais)
+        public void ModificarTipoEntrada(int id, string nombre, string descripcion, string imagen, int valido, int id_evento, int capacidad)
         {
-            Usuario usr = this.Get(idUsuario);
-            usr.Usuario1 = usuario;
-            usr.Nombre = nombre;
-            usr.Correo = correo;
-            usr.FechaNacimiento = fechaNac;
-            usr.SEXO = (short?)sexo;
-            usr.IdPais = idPais;
+            tipoentrada usr = this.Get(id);
+            
+            usr.nombre = nombre;
+            usr.descripcion = descripcion;
+            usr.imagen = imagen;
+            usr.id_evento = id_evento;
+            usr.capacidad = capacidad;
+            usr.valido = valido;
             Update(usr);
             SaveChanges();
         }
 
-        public void EliminarUsuario(int idUsuario)
+        public void EliminarTipoEntrada(int id)
         {
-            Usuario usr = this.Get(idUsuario);
+            tipoentrada usr = this.Get(id);
             Remove(usr);
             SaveChanges();
         }
 
-        public Usuario ObtenerUsuario(int idUsuario)
+        public tipoentrada ObtenerTipoEntrada(int id)
         {
-            return Get(idUsuario);
+            return Get(id);
         }
 
-        public List<UsuarioDTO> ObtenerUsuarios()
+        public List<tipoentrada> ObtenerTipoEntradas()
         {
-            return GetAll().Select(x => new UsuarioDTO()
-            {
-                IdUsuario = x.IdUsuario,
-                Usuario = x.Usuario1,
-                Nombre = x.Nombre,
-                Correo = x.Correo,
-                FechaNac = x.FechaNacimiento.Value,
-                Clave = x.Clave,
-                IdSexo = x.SEXO.Value,
-                Sexo = x.SEXO.Value == 1 ? "Masculino" : "Femenino",
-                IdPais = x.IdPais
-            }).ToList();
+            return GetAll();
         }
     }
 }
