@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using AccesoDatos.Domain.Entities;
 using AccesoDatos.Infrastructure.Data.Repositories;
 using AccesoDatos.Infrastructure.Data.DataModels;
+
 namespace AccesoDatos.Domain.Services
 {
-    public class CategoriaEventoEventoServicio
+    public class CategoriaEventoServicio
     {
         private readonly CategoriaEventoRepositorio _catRepositorio;
 

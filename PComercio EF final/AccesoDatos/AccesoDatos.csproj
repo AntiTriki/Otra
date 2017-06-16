@@ -73,6 +73,7 @@
     <Compile Include="Domain\Services\TipoEntradaServicio.cs" />
     <Compile Include="Domain\Services\TransaccionPreviaServicio.cs" />
     <Compile Include="Domain\Services\UbicacionServicio.cs" />
+    <Compile Include="Domain\Services\UsuarioeServicio.cs" />
     <Compile Include="Domain\Services\UsuarioServicio.cs" />
     <Compile Include="Infrastructure\Data\DataModels\categoria_empresa.cs">
       <DependentUpon>DbContext.tt</DependentUpon>
