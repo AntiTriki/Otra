@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AccesoDatos.Infrastructure.Data.DataModels;
 
 namespace AccesoDatos.Domain.Entities
 {
@@ -18,8 +19,8 @@ namespace AccesoDatos.Domain.Entities
     }
     public class PagoUsuarioAbmDTO
     {
-        public List<TransaccionPrevia> TransaccionPrevias;
-        public List<PagoUsuario> PagoUsuarios;
+        public List<transaccion_previa> TransaccionPrevias;
+        public List<pago_usuario> PagoUsuarios;
    
     }
 }

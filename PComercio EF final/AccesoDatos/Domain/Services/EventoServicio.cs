@@ -11,6 +11,7 @@ namespace AccesoDatos.Domain.Services
     public class EventoServicio
     {
         private readonly EventoRepositorio _eventoRepositorio;
+        private readonly EmpresaRepositorio _empresaRepositorio;
         private readonly CategoriaEventoRepositorio _categoriaRepositorio;
         private readonly UbicacionRepositorio _ubicacionRepositorio;
         public EventoServicio()
@@ -18,6 +19,7 @@ namespace AccesoDatos.Domain.Services
             _eventoRepositorio = new EventoRepositorio();
             _categoriaRepositorio = new CategoriaEventoRepositorio();
             _ubicacionRepositorio = new UbicacionRepositorio();
+            _empresaRepositorio = new EmpresaRepositorio();
         }
         public int GuardarEvento(int id, string nombre, string descripcion, DateTime fecha_inicio_evento, DateTime fecha_fin_evento, DateTime fecha_inicio_publicacion, DateTime fecha_fin_publicacion, int id_empresa, int id_categoria, int stock_inicial, int stock, int id_ubicacion, string imagen, int valido)
         {
@@ -29,11 +31,19 @@ namespace AccesoDatos.Domain.Services
             return id;
         }
 
-        public void EliminarCategoria(int id)
+        public void EliminarCategoriaEvento(int id)
         {
             _eventoRepositorio.EliminarEvento(id);
         }
-
+        public void EliminarEmpresa(int id)
+        {
+            _eventoRepositorio.EliminarEvento(id);
+        }
+        public void EliminarUbicacion(int id)
+        {
+            _eventoRepositorio.EliminarEvento(id);
+        }
+        
         public List<Evento> ObtenerEventos()
         {
             return _eventoRepositorio.ObtenerEventos();
@@ -44,6 +54,8 @@ namespace AccesoDatos.Domain.Services
             return new EventoAbmDTO()
             {
                 Eventos = _eventoRepositorio.ObtenerEventos(),
+                Empresas = _empresaRepositorio.ObtenerEmpresas(),
+                Ubicacions = _ubicacionRepositorio.ObtenerUbicaciones(),
                 CategoriaEventos = _categoriaRepositorio.ObtenerCategoriaEventos()
             };
 

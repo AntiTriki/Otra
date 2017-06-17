@@ -67,7 +67,7 @@
     <Compile Include="Domain\Services\ComunServicio.cs" />
     <Compile Include="Domain\Services\EmpresaServicio.cs" />
     <Compile Include="Domain\Services\EventoServicio.cs" />
-    <Compile Include="Domain\Services\Pago_UsuarioServicio.cs" />
+    <Compile Include="Domain\Services\PagoUsuarioServicio.cs" />
     <Compile Include="Domain\Services\PaisServicio.cs" />
     <Compile Include="Domain\Services\PublicidadServicio.cs" />
     <Compile Include="Domain\Services\TipoEntradaServicio.cs" />
