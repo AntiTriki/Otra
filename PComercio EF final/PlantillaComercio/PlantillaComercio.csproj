@@ -159,17 +159,25 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\CategoriaEventoController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
+    <Compile Include="Controllers\Home1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadDataController.cs" />
+    <Compile Include="Controllers\MyCartController.cs" />
     <Compile Include="Controllers\PagoUsuarioController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PublicidadController.cs" />
+    <Compile Include="Controllers\ThankYouController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TransaccionPreviaController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +201,22 @@
     <Content Include="Content\Bootstrap\js\npm.js" />
     <Content Include="Content\CSS\jquery-ui.css" />
     <Content Include="Content\CSS\toastr.css" />
+    <Content Include="Content\Intellisence\css\jquery-ui.min.css" />
+    <Content Include="Content\Intellisence\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\Intellisence\js\jquery-ui.min.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\custom.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.simpleGallery.js" />
+    <Content Include="Content\js\jquery.simpleLens.js" />
+    <Content Include="Content\js\jquery.smartmenus.bootstrap.js" />
+    <Content Include="Content\js\jquery.smartmenus.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\js\nouislider.js" />
+    <Content Include="Content\js\sequence-theme.modern-slide-in.js" />
+    <Content Include="Content\js\sequence.js" />
+    <Content Include="Content\js\slick.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -240,7 +264,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -258,6 +282,9 @@
     <Content Include="Views\Pais\Pais.cshtml" />
     <Content Include="Views\Usuario\Usuario.cshtml" />
     <Content Include="Views\Categoria\Categoria.cshtml" />
+    <Content Include="Views\Shared\_Cartbox.cshtml" />
+    <Content Include="Views\Shared\_Product.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

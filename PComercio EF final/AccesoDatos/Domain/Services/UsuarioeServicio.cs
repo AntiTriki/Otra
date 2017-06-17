@@ -17,7 +17,7 @@ namespace AccesoDatos.Domain.Services
             
         }
 
-        public int GuardarUsuarioe(int id = 0, string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido, int telefono, int nit, string estado_civil, string ocupacion)
+        public int GuardarUsuarioe( string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido, int telefono, int nit, string estado_civil, string ocupacion, int id = 0)
         {
             if (id == 0)
                 id = _usuarioRepositorio.GuardarUsuarioe( nombre,  correo, contra,  fecha_nac,  sexo,  apellidop,  apellidom, direccion,  imagen, fecha_registro,  nombre_nit,  correo_nit,  valido,  telefono,  nit,  estado_civil, ocupacion);
