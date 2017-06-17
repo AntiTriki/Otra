@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccesoDatos.Infrastructure.Data.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,8 @@ namespace AccesoDatos.Domain.Entities
     }
     public class TransaccionPreviaAbmDTO
     {
-        public List<TransaccionPrevia> TransaccionPrevias;
-        public List<TipoEntrada> TipoEntradas;
-        public List<Usuarioe> Usuarioes;
+        public List<transaccion_previa> TransaccionPrevias;
+        public List<tipoentrada> TipoEntradas;
+        public List<usuarioe> Usuarioes;
     }
 }

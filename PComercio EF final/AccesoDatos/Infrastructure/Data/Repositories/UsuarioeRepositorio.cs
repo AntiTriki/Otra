@@ -8,7 +8,7 @@ namespace AccesoDatos.Infrastructure.Data.Repositories
 {
     public class UsuarioeRepositorio : EFRepositorio<usuarioe>
     {
-        public int GuardarUsuario(string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido , int telefono, int nit,string estado_civil, string ocupacion)        {
+        public int GuardarUsuarioe(string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido , int telefono, int nit,string estado_civil, string ocupacion)        {
             usuarioe usr = new usuarioe()
             {
 
@@ -35,7 +35,7 @@ namespace AccesoDatos.Infrastructure.Data.Repositories
             SaveChanges();
             return usr.id;
         }
-        public void ModificarUsuario(int id, string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido, int telefono, int nit, string estado_civil, string ocupacion)
+        public void ModificarUsuarioe(int id, string nombre, string correo, string contra, DateTime fecha_nac, string sexo, string apellidop, string apellidom, string direccion, string imagen, DateTime fecha_registro, string nombre_nit, string correo_nit, int valido, int telefono, int nit, string estado_civil, string ocupacion)
         {
             usuarioe usr = this.Get(id);
             
@@ -61,19 +61,19 @@ namespace AccesoDatos.Infrastructure.Data.Repositories
             SaveChanges();
         }
 
-        public void EliminarUsuario(int id)
+        public void EliminarUsuarioe(int id)
         {
             usuarioe usr = this.Get(id);
             Remove(usr);
             SaveChanges();
         }
 
-        public usuarioe ObtenerUsuario(int id)
+        public usuarioe ObtenerUsuarioe(int id)
         {
             return Get(id);
         }
 
-        public List<usuarioe> ObtenerUsuarios()
+        public List<usuarioe> ObtenerUsuarioes()
         {
             return GetAll();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccesoDatos.Infrastructure.Data.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace AccesoDatos.Domain.Entities
     public class TipoEntradaAbmDTO
     {
         public List<Evento> Eventos;
-        public List<TipoEntrada> TipoEntradas;
+        public List<tipoentrada> TipoEntradas;
 
     }
 }

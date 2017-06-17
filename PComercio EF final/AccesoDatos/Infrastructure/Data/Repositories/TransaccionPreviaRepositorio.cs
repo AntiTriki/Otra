@@ -23,7 +23,7 @@ namespace AccesoDatos.Infrastructure.Data.Repositories
             SaveChanges();
             return usr.id;
         }
-        public void ModificarTransaccionPrevia(int id, int id_usuario, DateTime fecha, int cantidad, int id_tipoentrada, int valido)
+        public void ModificarTransaccionPrevia(int id, int id_usuario, int cantidad, DateTime fecha, int id_tipoentrada, int valido)
         {
             transaccion_previa usr = this.Get(id);
             usr.id_usuario = id_usuario;

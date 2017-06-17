@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AccesoDatos.Infrastructure.Data.DataModels;
 namespace AccesoDatos.Domain.Entities
 {
     public class Publicidad
@@ -20,6 +20,6 @@ namespace AccesoDatos.Domain.Entities
     {
         public List<Empresa> Empresas;
         public List<Evento> Eventos;
-        public List<Publicidad> Publicidads;
+        public List<publicidad> Publicidads;
     }
 }
