@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Eventos B-Out!! | @ViewBag.Title</title>
 
-    @Styles.Render("~/Content/css")
+   
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="~/Content/css/bootstrap.css"rel="stylesheet" />
+
+    <link href="~/Content/css/jquery.smartmenus.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery.simpleLens.css" rel="stylesheet" />
+    <link href="~/Content/css/slick.css"rel="stylesheet" />
+    <link href="~/Content/css/nouislider.css" rel="stylesheet" />
+    <link href="~/Content/css/theme-color/orange-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/sequence-theme.modern-slide-in.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
     
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -130,7 +141,7 @@
                                 AccesoDatos.Infrastructure.Data.DataModels.ejmEntities4 db = new AccesoDatos.Infrastructure.Data.DataModels.ejmEntities4();
                                 Dictionary<string, IEnumerable<string>> navbar = new Dictionary<string, IEnumerable<string>>();
 
-                                List<AccesoDatos.Infrastructure.Data.DataModels.categoria_evento> Categorias = db.categoria_evento.ToList();
+                                List<AccesoDatos.Infrastructure.Data.DataModels.categoria_evento> Categorias = db.categoria_evento.Where(x => x.id_subcategoria== null).ToList();
                                 foreach (AccesoDatos.Infrastructure.Data.DataModels.categoria_evento cat in Categorias)
                                 {
                                     IEnumerable<string> subCat = db.categoria_evento.Where(x => x.id_subcategoria == cat.id).Select(x => x.nombre).ToList();
@@ -142,7 +153,7 @@
                                     if (count < 8)
                                     {
                                     <li>
-                                        <a href="">@nav.Key<span class="caret"></span></a> 
+                                        <a>@nav.Key<span class="caret"></span></a> 
                                         <ul class="dropdown-menu">
                                             @foreach (var subNav in nav.Value)
                                             {
@@ -262,9 +273,16 @@
     </footer>
     <!-- / footer -->
    
-    @Scripts.Render("~/Content/js")
-    @RenderSection("scripts", required: false)
-
+    <script src="~/Content/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/jquery.smartmenus.js"></script>
+    <script src="~/Content/js/jquery.smartmenus.bootstrap.js"></script>
+    <script src="~/Content/js/sequence.js"></script>
+    <script src="~/Content/js/sequence-theme.modern-slide-in.js"></script>
+    <script src="~/Content/js/jquery.simpleGallery.js"></script>
+    <script src="~/Content/js/jquery.simpleLens.js"></script>
+    <script src="~/Content/js/slick.js"></script>
+    <script src="~/Content/js/custom.js"></script>
     <script type="text/javascript">
         $(function () {          
 
