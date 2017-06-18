@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Khareedo.pk | @ViewBag.Title</title>
+    <title>Eventos B-Out!! | @ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
     
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script src="~/Content/js/jquery.min.js"></script>
-
-    <!-- Ad intellisence for searching products-->
+    <script src="~/Scripts/js/Utiles.js"></script>
+    <!-- Ad intellisence for searching eventos-->
     
     <link href="~/Content/Intellisence/css/jquery-ui.min.css" rel="stylesheet" />
     <script src="~/Content/Intellisence/js/jquery-1.10.2.min.js"></script>
@@ -22,7 +22,7 @@
     <script type="text/javascript">
         $(function () {
             $("#searchTxtBox").autocomplete({
-                source: '@Url.Action("GetProducts","Product")'
+                source: '@Url.Action("GetEventos","Evento")'
             });
         });
     </script>
@@ -32,7 +32,7 @@
     <!-- wpf loader Two -->
     <div id="wpf-loader-two">
         <div class="wpf-loader-two-inner">
-            <span>Loading</span>
+            <span>Cargando</span>
         </div>
     </div>
     <!-- / wpf loader Two -->
@@ -48,49 +48,13 @@
                     <div class="col-md-12">
                         <div class="aa-header-top-area">
                             <!-- start header top left -->
-                            <div class="aa-header-top-left">
-                                <!-- start language -->
-                                <div class="aa-language">
-                                    <div class="dropdown">
-                                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <img src="~/Content/img/flag/english.jpg" alt="english flag">ENGLISH
-                                            @*<span class="caret"></span>*@
-                                        </a>
-                                        @*<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#"><img src="~/Content/img/flag/french.jpg" alt="">FRENCH</a></li>
-                                            <li><a href="#"><img src="~/Content/img/flag/english.jpg" alt="">ENGLISH</a></li>
-                                        </ul>*@
-                                    </div>
-                                </div>
-                                <!-- / language -->
-                                <!-- start currency -->
-                                <div class="aa-currency">
-                                    <div class="dropdown">
-                                        <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <i class="fa fa-money"></i>PKR
-                                            @*<span class="caret"></span>*@
-                                        </a>
-                                        @*<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                                            <li><a href="#"><i class="fa fa-usd"></i>USD</a></li>
-                                        </ul>*@
-                                    </div>
-                                </div>
-                                <!-- / currency -->
-                                <!-- start cellphone -->
-                                <div class="cellphone hidden-xs">
-                                    <p><span class="fa fa-phone"></span>021-6558-6588</p>
-                                </div>
-                                <!-- / cellphone -->
-                            </div>
+                            
                             <!-- / header top left -->
                             <div class="aa-header-top-right">
                                 <ul class="aa-head-top-nav-right">
                                     
-                                    <li><a href="@(Session["username"] != null ? Url.Action("Index", "Account") : Url.Action("Login", "Account"))">My Account</a></li>                                    
-                                    <li class="hidden-xs"><a href="@(Session["username"] != null ? Url.Action("Index", "WishList") : Url.Action("Login", "Account"))">Wishlist @if(@ViewBag.WlItemsNo > 0 ){ <text>(@ViewBag.WlItemsNo)</text> }</a></li>
-                                    <li class="hidden-xs"><a href="@(Session["username"] != null ? Url.Action("Index", "MyCart") : Url.Action("Login", "Account"))">My Cart @if (@ViewBag.NoOfItem > 0){ <text>(@ViewBag.NoOfItem)</text> }</a></li>
-                                    <li class="hidden-xs"><a href="@(Session["username"] != null ? Url.Action("Index", "CheckOut") : Url.Action("Login", "Account"))">Checkout</a></li>
+                                    <li><a href="@(Session["username"] != null ? Url.Action("Index", "Account") : Url.Action("Login", "Account"))">Mi cuenta</a></li>                                    
+                                    
                                     @if (Session["username"]==null)
                                     {                          
                                         
@@ -98,7 +62,7 @@
                                     }
                                     else
                                     {
-                                        <li><a href="@Url.Action("Logout","Account")">Logout</a></li>
+                                        <li><a href="@Url.Action("Logout","Account")">Salir</a></li>
                                         <li><a href="" >@Session["username"]</a></li>
                                     }
                                 </ul>
@@ -119,36 +83,19 @@
                             <div class="aa-logo">
                                 <!-- Text based logo -->
                                 <a href="@Url.Action("Index","Home")">
-                                    <span class="fa fa-shopping-cart"></span>
-                                    <p>Khareedo<strong>.pk</strong> <span>Your Shopping Partner</span></p>
+                                    <span class="fa fa-grav"></span>
+                                    <p>B-<strong>Out!</strong> <span>Redescubre tu Rutina</span></p>
                                 </a>
                                 <!-- img based logo -->
                                 <!-- <a href="index.html"><img src="~/Content/img/logo.jpg" alt="logo img"></a> -->
                             </div>
                             <!-- / logo  -->
-                            <!-- cart box -->
-                            <div class="aa-cartbox">
-                                <a class="aa-cart-link" href="#">
-                                    <span class="fa fa-shopping-basket"></span>
-                                    <span class="aa-cart-title">SHOPPING CART</span>
-                                    <span class="aa-cart-notify">@(ViewBag.NoOfItem==null ? 0 :ViewBag.NoOfItem)</span>
-                                </a>
-                                <div class="aa-cartbox-summary">
-                                    <ul>
-                                        @if(Session["username"]!=null)
-                                        {
-                                            Html.RenderPartial("_CartBox");
-                                                                            
-                                        }
-                                    </ul>
-                                    <a class="aa-cartbox-checkout aa-primary-btn" href="@Url.Action("Index","CheckOut")">Checkout</a>
-                                </div>
-                            </div>
-                            <!-- / cart box -->
+                           
+                            
                             <!-- search box -->
                             <div class="aa-search-box">
-                                <form action="@Url.Action("Search","Product")" method="get">
-                                    <input type="text" name="product" id="searchTxtBox" placeholder="Search product here . . . ">
+                                <form action="@Url.Action("Search","Evento")" method="get">
+                                    <input type="text" name="evento" id="searchTxtBox" placeholder="Busca tu evento ">
                                     <button type="submit"><span class="fa fa-search"></span></button>
                                 </form>
                             </div>
@@ -180,26 +127,26 @@
                         <ul class="nav navbar-nav">
                             <li><a href="@Url.Action("Index","Home")">Home</a></li>
                             @{
-                                Khareedo.Models.KhareedoEntities db = new Khareedo.Models.KhareedoEntities();
+                                AccesoDatos.Infrastructure.Data.DataModels.ejmEntities4 db = new AccesoDatos.Infrastructure.Data.DataModels.ejmEntities4();
                                 Dictionary<string, IEnumerable<string>> navbar = new Dictionary<string, IEnumerable<string>>();
 
-                                List<Khareedo.Models.Category> Categories = db.Categories.ToList();
-                                foreach (Khareedo.Models.Category cat in Categories)
+                                List<AccesoDatos.Infrastructure.Data.DataModels.categoria_evento> Categorias = db.categoria_evento.ToList();
+                                foreach (AccesoDatos.Infrastructure.Data.DataModels.categoria_evento cat in Categorias)
                                 {
-                                    IEnumerable<string> subCat = db.SubCategories.Where(x => x.CategoryID == cat.CategoryID).Select(x => x.Name).ToList();
-                                    navbar.Add(cat.Name, subCat);
+                                    IEnumerable<string> subCat = db.categoria_evento.Where(x => x.id_subcategoria == cat.id).Select(x => x.nombre).ToList();
+                                    navbar.Add(cat.nombre, subCat);
                                 }
                                 int count=0;
                                 foreach (KeyValuePair<string,IEnumerable<string>> nav in navbar)
                                 {
                                     if (count < 8)
-                                    {                               
+                                    {
                                     <li>
                                         <a href="">@nav.Key<span class="caret"></span></a> 
                                         <ul class="dropdown-menu">
                                             @foreach (var subNav in nav.Value)
                                             {
-                                                <li><a href="@Url.Action("GetProductsByCategory","Product", new { categoryName = subNav.Trim() })">@subNav.Trim()</a></li>
+                                                <li><a href="@Url.Action("GetEventosByCategory","Evento", new { categorynombre = subNav.Trim() })">@subNav.Trim()</a></li>
                                             }
                                         </ul>
                                     </li>
@@ -219,22 +166,7 @@
     @RenderBody()
    
     <!-- Subscribe section -->
-    <section id="aa-subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="aa-subscribe-area">
-                        <h3>Subscribe our newsletter </h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
-                        <form action="" class="aa-subscribe-form">
-                            <input type="email" name="" id="" placeholder="Enter your Email">
-                            <input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- / Subscribe section -->
     <!-- footer -->
     <footer id="aa-footer">
@@ -251,7 +183,7 @@
                                         <ul class="aa-footer-nav">
                                             <li><a href="#">Home</a></li>
                                             <li><a href="#">Our Services</a></li>
-                                            <li><a href="#">Our Products</a></li>
+                                            <li><a href="#">Our Eventos</a></li>
                                             <li><a href="#">About Us</a></li>
                                             <li><a href="#">Contact Us</a></li>
                                         </ul>
